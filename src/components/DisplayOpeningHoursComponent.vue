@@ -22,11 +22,9 @@ const dayHours = (hours: DayOpeningHours, dayKey: keyof OpeningHours) => {
 </script>
 
 <template>
-    <template v-for="(hours, dayKey) in openingHours" :key="dayKey">
-      <p>{{ dayHours(hours, dayKey) }}</p>
-    </template>
+  <template v-for="(hours, dayKey) in openingHours" :key="dayKey">
+    <p>{{ dayHours(hours, dayKey) }}</p>
+  </template>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

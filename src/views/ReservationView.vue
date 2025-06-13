@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { getOwner } from '@/utils/reserv.ts'
-import DisplayOpeningHours from '@/components/DisplayOpeningHours.vue'
+import DisplayOpeningHoursComponent from '@/components/DisplayOpeningHoursComponent.vue'
+import DaySelectionComponent from '@/components/DaySelection/DaySelectionComponent.vue'
 
 const route = useRoute()
 const ownerId = route.params.id as string
 
 const owner = getOwner(ownerId)
-
-
 </script>
 
 <template>
@@ -21,11 +20,12 @@ const owner = getOwner(ownerId)
       <input type="checkbox" />
       <div class="collapse-title font-semibold">Afficher les horaires</div>
       <div class="collapse-content text-sm">
-        <DisplayOpeningHours :opening-hours="owner.openingHours" />
+        <DisplayOpeningHoursComponent :opening-hours="owner.openingHours" />
       </div>
     </div>
-
   </div>
+
+  <DaySelectionComponent />
 </template>
 
 <style scoped></style>
