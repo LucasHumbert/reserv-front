@@ -8,11 +8,11 @@ const dayHours = (hours: DayOpeningHours, dayKey: keyof OpeningHours) => {
   let result = `${frenchDays[dayKey]}: `
 
   if (hours.opened) {
-    result += `${hours.morningStart}-`
+    result += `${hours.dayStart}-`
 
-    result += hours.morningEnd
-      ? `${hours.morningEnd} ${hours.afternoonStart}-${hours.afternoonEnd}`
-      : hours.afternoonEnd
+    result += (hours.pauseStart && hours.pauseEnd)
+      ? `${hours.pauseStart} ${hours.pauseEnd}-${hours.dayEnd}`
+      : hours.dayEnd
   } else {
     result += 'Fermé'
   }

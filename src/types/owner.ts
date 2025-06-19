@@ -19,10 +19,10 @@ export interface OpeningHours {
 
 export interface DayOpeningHours {
   opened: boolean
-  morningStart: string | null
-  morningEnd: string | null
-  afternoonStart: string | null
-  afternoonEnd: string | null
+  dayStart: string | null
+  dayEnd: string | null
+  pauseStart: string | null
+  pauseEnd: string | null
 }
 
 export const frenchDays = {
