@@ -10,9 +10,10 @@ const dayHours = (hours: DayOpeningHours, dayKey: keyof OpeningHours) => {
   if (hours.opened) {
     result += `${hours.dayStart}-`
 
-    result += (hours.pauseStart && hours.pauseEnd)
-      ? `${hours.pauseStart} ${hours.pauseEnd}-${hours.dayEnd}`
-      : hours.dayEnd
+    result +=
+      hours.pauseStart && hours.pauseEnd
+        ? `${hours.pauseStart} ${hours.pauseEnd}-${hours.dayEnd}`
+        : hours.dayEnd
   } else {
     result += 'Fermé'
   }

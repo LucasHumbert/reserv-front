@@ -2,15 +2,22 @@
 import { DateTime, type WeekNumbers } from 'luxon'
 import { computed, ref } from 'vue'
 import DaySelectorComponent from '@/components/DaySelection/DaySelectorComponent.vue'
-import WeekSelectionButtonComponent
-  from '@/components/DaySelection/WeekSelectionButtonComponent.vue'
+import WeekSelectionButtonComponent from '@/components/DaySelection/WeekSelectionButtonComponent.vue'
 
 const currentWeek = ref(DateTime.now().weekNumber)
 const currentYear = ref(DateTime.now().year)
 
-const getCurrentWeekDateTime = computed(() => DateTime.fromObject({ weekNumber: currentWeek.value, weekYear: currentYear.value }))
+const getCurrentWeekDateTime = computed(() =>
+  DateTime.fromObject({ weekNumber: currentWeek.value, weekYear: currentYear.value }),
+)
 
-const canGoToPrevious = computed(() => !(getCurrentWeekDateTime.value.weekYear === DateTime.now().year && getCurrentWeekDateTime.value.weekNumber <= DateTime.now().weekNumber))
+const canGoToPrevious = computed(
+  () =>
+    !(
+      getCurrentWeekDateTime.value.weekYear === DateTime.now().year &&
+      getCurrentWeekDateTime.value.weekNumber <= DateTime.now().weekNumber
+    ),
+)
 
 const displayMonth = computed(() => {
   const first = getCurrentWeekDateTime.value.startOf('week')
@@ -49,13 +56,27 @@ const nextWeek = () => {
   <div class="w-[95%] m-auto">
     <div class="flex items-center my-3">
       <WeekSelectionButtonComponent :on-click="previousWeek" :is-clickable="canGoToPrevious">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </WeekSelectionButtonComponent>
 
       <WeekSelectionButtonComponent :on-click="nextWeek">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
           <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
         </svg>
       </WeekSelectionButtonComponent>
@@ -66,9 +87,11 @@ const nextWeek = () => {
     <div class="flex">
       <template v-for="value in 7" :key="value">
         <DaySelectorComponent
-          :day="DateTime.fromObject({ weekNumber: currentWeek })
-          .startOf('week')
-          .plus({ day: value - 1 })"
+          :day="
+            DateTime.fromObject({ weekNumber: currentWeek })
+              .startOf('week')
+              .plus({ day: value - 1 })
+          "
         />
       </template>
     </div>
